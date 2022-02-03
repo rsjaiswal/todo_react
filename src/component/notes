@@ -1,0 +1,63 @@
+import React, { useEffect, useRef, useState } from "react";
+
+const App = () => {
+  const [count, setCount] = useState(0);
+  const [value, setValue] = useState();
+
+  const newRef = useRef();
+
+  const clickMe = () => {
+    newRef.current.value = "reference click";
+    alert("hello this web page");
+    console.log("click on the  page");
+  };
+
+  useEffect(() => {
+    clickMe();
+    setCount(0);
+    if (count === 1) {
+      console.log("here new value add");
+      setValue("hello this rams page");
+    }
+  }, [count]);
+
+  return (
+    <div onClick={clickMe}>
+      <p ref={newRef}>hello react </p>
+      <p>{value}</p>
+    </div>
+  );
+};
+
+export default App;
+
+
+//useRef example
+
+import { useRef, useEffect } from "react";
+
+function App() {
+  const elementRef = useRef();
+  const inputRef = useRef();
+
+  useEffect(() => {
+    const divElement = elementRef.current;
+    console.log(divElement);
+    inputRef.current.focus();
+    inputRef.current.value = "Enter something in the value";
+  }, []);
+
+  return (
+    <div>
+      <p>I'm an element</p>
+
+      <div ref={elementRef}>
+        <p>hello world this </p>
+      </div>
+
+      <input type="text" ref={inputRef} />
+    </div>
+  );
+}
+
+export default App;
